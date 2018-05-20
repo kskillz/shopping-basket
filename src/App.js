@@ -28,7 +28,7 @@ class App extends Component {
 
   _loadItems() {
     const req = new XMLHttpRequest();
-    req.open('GET', 'http://localhost:3001/items');
+    req.open('GET', `${process.env.REACT_APP_DATA_URL}/items`);
     req.onreadystatechange = this._getResponseText.bind(this);
     this._dbRequest = req;
     req.send();
@@ -65,7 +65,7 @@ class App extends Component {
 
   _saveData(id, data) {
     const req = new XMLHttpRequest();
-    const url = `http://localhost:3001/items/${id}`;
+    const url = `${process.env.REACT_APP_DATA_URL}/items/${id}`;
     req.open('PATCH', url);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(JSON.stringify(data));
@@ -73,7 +73,7 @@ class App extends Component {
 
   _newData(data) {
     const req = new XMLHttpRequest();
-    const url = `http://localhost:3001/items`;
+    const url = process.env.REACT_APP_DATA_URL;
     req.open('POST', url);
     req.setRequestHeader("Content-Type", "application/json");
     req.onreadystatechange = this._loadItems.bind(this);
@@ -83,7 +83,7 @@ class App extends Component {
 
   _delete(id) {
     const req = new XMLHttpRequest();
-    const url = `http://localhost:3001/items/${id}`;
+    const url = `${process.env.REACT_APP_DATA_URL}/items/${id}`;
     req.open('DELETE', url);
     req.setRequestHeader("Content-Type", "application/json");
     req.send();
