@@ -73,7 +73,7 @@ class App extends Component {
 
   _newData(data) {
     const req = new XMLHttpRequest();
-    const url = process.env.REACT_APP_DATA_URL;
+    const url = `${process.env.REACT_APP_DATA_URL}/items`;
     req.open('POST', url);
     req.setRequestHeader("Content-Type", "application/json");
     req.onreadystatechange = this._loadItems.bind(this);
